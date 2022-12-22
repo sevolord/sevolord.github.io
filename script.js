@@ -43,9 +43,25 @@ form.addEventListener('submit', (event) => {
     // create an HTML string containing the form data
     let html = "<title>Успешная регистрация на форум!</title>";
     html+="<p><strong>Ваши данные записаны:</strong></p>";
-    for (const key in data) {
-      html += `<p><strong>${key}:</strong> ${data[key]}</p>`;
-    }
+
+    let str = data['name'];
+    html+=`<p><strong>ФИО: </strong> ${str} </p>`;
+    str = data['email'];
+    html+=`<p><strong>Email: </strong> ${str} </p>`;
+    str = data['conference-sections'];
+    html+=`<p><strong>Секция: </strong> ${str} </p>`;
+    str = data['phone'];
+    html+=`<p><strong>Телефон: </strong> ${str} </p>`;
+    str = data['date-of-birth'];
+    html+=`<p><strong>Дата рождения: </strong> ${str} </p>`;
+    if (data['report'] == 'yes') 
+    {
+      str = data['report-topic'];
+      html+=`<p><strong>Тема доклада: </strong> ${str} </p>`;
+    }        
+    // for (const key in data) {
+    //   html += `<p><strong>${key}:</strong> ${data[key]}</p>`;
+    // }
     
     // create a new window and display the HTML string
     const newWindow = window.open();
