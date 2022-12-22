@@ -29,5 +29,28 @@ form.addEventListener('submit', (event) => {
     return;
   }
   
+//  формируем страницу с введенными данными 
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    
+    const formData = new FormData(form);
+    const data = {};
+    
+    for (const [key, value] of formData) {
+      data[key] = value;
+    }
+    
+    // create an HTML string containing the form data
+    let html = "<title>Успешная регистрация на форум!</title>";
+    html+="<p><strong>Ваши данные записаны:</strong></p>";
+    for (const key in data) {
+      html += `<p><strong>${key}:</strong> ${data[key]}</p>`;
+    }
+    
+    // create a new window and display the HTML string
+    const newWindow = window.open();
+    newWindow.document.write(html);
+  });
+  
   // form is valid, proceed with submission
 });
