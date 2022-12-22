@@ -2,7 +2,7 @@ const form = document.getElementById('registration-form');
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  
+    
   const name = form.elements.name.value;
   const phone = form.elements.phone.value;
   const email = form.elements.email.value;
@@ -28,11 +28,7 @@ form.addEventListener('submit', (event) => {
     alert('Пожалуйста, введите действительный адрес электронной почты');
     return;
   }
-  
-//  формируем страницу с введенными данными 
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    
+  //  формируем страницу с введенными данными 
     const formData = new FormData(form);
     const data = {};
     
@@ -41,7 +37,10 @@ form.addEventListener('submit', (event) => {
     }
     
     // create an HTML string containing the form data
-    let html = "<title>Успешная регистрация на форум!</title>";
+     
+    let html = '<style>body {background:url(back.png); }</style>';   
+    html+=`<form style="max-width: 500px; margin: 0 auto;padding: 20px;background-color: #f5f5f5;border-radius: 10px;">`; 
+    html+="<title>Успешная регистрация на форум!</title>";
     html+="<p><strong>Ваши данные записаны:</strong></p>";
 
     let str = data['name'];
@@ -53,20 +52,22 @@ form.addEventListener('submit', (event) => {
     str = data['phone'];
     html+=`<p><strong>Телефон: </strong> ${str} </p>`;
     str = data['date-of-birth'];
-    html+=`<p><strong>Дата рождения: </strong> ${str} </p>`;
+    if (str != '')
+      html+=`<p><strong>Дата рождения: </strong> ${str} </p>`;
     if (data['report'] == 'yes') 
     {
       str = data['report-topic'];
       html+=`<p><strong>Тема доклада: </strong> ${str} </p>`;
-    }        
+    } 
+    html+="</form></body>";       
     // for (const key in data) {
     //   html += `<p><strong>${key}:</strong> ${data[key]}</p>`;
     // }
     
     // create a new window and display the HTML string
     const newWindow = window.open();
-    newWindow.document.write(html);
-  });
+    newWindow.document.write(html); 
+
   
   // form is valid, proceed with submission
 });
