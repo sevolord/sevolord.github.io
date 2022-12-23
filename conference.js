@@ -114,7 +114,20 @@ sequelize
   });
   });
 
-   
+  //выводим табличку
+  // Set the view engine to pug
+  app.set('view engine', 'pug');
+
+  // Handle GET requests to the /visitors route
+  app.get('/visitors', async (req, res) => {
+    // Fetch the rows of the table
+    const visitors = await Conference_visitors.findAll();
+
+    // Render the visitors template with the visitors data
+    res.render('visitors', { visitors });
+  });
+
+  //слушаем сервер  
   app.listen(3000, () => {
     console.log('Server listening on port 3000');
   });

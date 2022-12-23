@@ -1,4 +1,32 @@
-#registration-form {
+#menu-container {
+  background-color: #eee;
+  padding: 10px;
+}
+
+#menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+#menu li {
+  flex: 1;
+  text-align: center;
+}
+
+#menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+#menu a:hover {
+  background-color: #eee;
+}
+
+ #registration-form {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
@@ -54,3 +82,22 @@
     background-color: #555;
   }
   
+  /* оформление таблицы */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  th {
+    background-color: #eee;
+    color: black;
+  }

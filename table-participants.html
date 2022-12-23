@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- подлючаем файл стилей, куда мы засунули все о том, ка это должно выглядеть -->
+   <link rel="stylesheet" href="./public/style.css"> 
+   <title>Таблица зарегестрированных участников</title>
+   <style>
+    body {
+     background: url(./public/back.png); 
+     }
+   </style>
+</head>
+<body>
+  <div id="menu-container">
+    <ul id="menu">
+      <li><a href="./index.html">Регистрация</a></li>
+      <li><a href="./table-participants.html">Список участников</a></li>
+    </ul>
+  </div>
+
+  <h1>Conference Visitors</h1>
+    <table id="visitors-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Section</th>
+          <th>Date of Birth</th>
+          <th>Report Topic</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+   
+    <script>
+      // Make a GET request to the /visitors route
+fetch('/visitors')
+  .then(response => response.json())
+  .then(visitors => {
+    // Get the table element
+    const table = document.getElementById('visitors-table');
+
+    // Iterate over the rows of the table
+    visitors.forEach(visitor => {
+      // Create a table row element
+      const row = document.createElement('tr');
+
+      // Create a table cell element for each column of the table
+      const idCell = document.createElement('td');
+      const nameCell = document.createElement('td');
+      const phoneCell = document.createElement('td');
+      const emailCell = document.createElement('td');
+      const sectionCell = document.createElement('td');
+      const dateOfBirthCell = document.createElement('td');
+      const reportTopicCell = document.createElement('td');
+
+      // Set the text content of the cells
+      idCell.textContent = visitor.myID;
+      nameCell.textContent = visitor.myName;
+      phoneCell.textContent = visitor.myPhone;
+      emailCell.textContent = visitor.myEmail;
+      sectionCell.textContent = visitor.mySection;
+      dateOfBirthCell.textContent = visitor.myDateOfBirth;
+      reportTopicCell.textContent = visitor.myReportTopic;
+
+      // Append the cells to the row
+      row.appendChild(idCell);
+      row.appendChild(nameCell);
+      row.appendChild(phoneCell);
+      row.appendChild(emailCell);
+      row.appendChild(sectionCell);
+      row.appendChild(dateOfBirthCell);
+      row.appendChild(reportTopicCell);
+
+      // Append the row to the table
+      table.appendChild(row);
+    });
+  });
+
+    </script>
+   <!-- подключаем файл с джаваскриптом, в нем у нас валидация и отбивка о регистрации-->
+    <script src="./public/script.js"></script>   
+  
+</body>
+</html>
