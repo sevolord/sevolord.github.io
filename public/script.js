@@ -28,16 +28,28 @@ form.addEventListener('submit', (event) => {
     alert('Пожалуйста, введите действительный адрес электронной почты');
     return;
   }
-  //  формируем страницу с введенными данными 
-    const formData = new FormData(form);
-    const data = {};
-    
-    for (const [key, value] of formData) {
-      data[key] = value;
-    }
-    
-    // create an HTML string containing the form data
-     
+
+  //формируем данные со страницы 
+  const formData = new FormData(form);
+  const data = {};
+  
+  for (const [key, value] of formData) {
+    data[key] = value;
+  }
+
+  //отправляем данные на сервер
+
+  fetch('/submit', {
+    method: 'POST',
+    body: formData
+  }).then(response => {
+    // Handle the response from the server
+  }).catch(error => {
+    console.error(error);
+  });
+
+  //  формируем страницу с введенными данными     
+    // create an HTML string containing the form data     
     let html = '<style>body {background:url(back.png); }</style>';   
     html+=`<form style="max-width: 500px; margin: 0 auto;padding: 20px;background-color: #f5f5f5;border-radius: 10px;">`; 
     html+="<title>Успешная регистрация на форум!</title>";

@@ -68,6 +68,10 @@ sequelize
   
   const app = express();
   
+  // Serve static files from the "public" directory
+  app.use('/public',express.static('public'));
+  app.use('/pages',express.static('pages'));
+  
   app.get('/', (req, res) => {
     fs.readFile('./index.html', (err, data) => {
       if (err) {
@@ -85,8 +89,32 @@ sequelize
   app.use((req, res) => {
     res.sendStatus(404);
   });
-  
+
+    //парсим нажатие кнопки 
+  // const bodyParser = require('body-parser');
+  // app.use(bodyParser.json());
+  const bodyParser = require('body-parser')
+  const urlencodedParser = bodyParser.urlencoded({extended: false});
+  // Handle POST requests to the /submit route
+  //app.post('/submit', (req, res) => {
+  app.post('/submit', urlencodedParser, function (req, res) {
+  // Insert the data into the database
+  console.log('gotcha!');
+  Conference_visitors.create({
+    myName: req.body.name,
+    myPhone: req.body.phone,
+    myEmail: req.body.email,
+    mySection: req.body.conference-sections,
+    myDateOfBirth: Date(req.body.date-of-birth),
+    myReportTopic: req.body.report-topic
+  }).then(() => {
+    console.log('Data inserted into the Conference_visitors table');
+  }).catch(err => {
+    console.error(err);
+  });
+  });
+
+   
   app.listen(3000, () => {
     console.log('Server listening on port 3000');
   });
-  

@@ -5,16 +5,16 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <!-- подлючаем файл стилей, куда мы засунули все о том, ка это должно выглядеть -->
-   <link rel="stylesheet" href="style.css"> 
+   <link rel="stylesheet" href="./public/style.css"> 
    <title>Регистрация участников форума</title>
    <style>
     body {
-     background: url(back.png); 
+     background: url(./public/back.png); 
      }
    </style>
 </head>
 <body>
-   <form id="registration-form">
+   <form id="registration-form" action="/submit" method="POST">
       <label for="name">ФИО</label>
       <input type="text" id="name" name="name" required>
       
@@ -65,7 +65,7 @@
    });
    </script>
    <!-- подключаем файл с джаваскриптом, в нем у нас валидация и отбивка о регистрации-->
-    <script src="script.js"></script>   
+    <script src="./public/script.js"></script>   
   
 </body>
 </html>
